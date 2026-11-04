@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do you love me?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#1a0638;--violet:#4b1b8f;--neon:#c04dff;--lav:#e4d4ff;--glass:rgba(255,255,255,.08)}
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%}
+body{font-family:'Quicksand',system-ui,sans-serif;color:var(--lav);background:radial-gradient(circle at 20% 15%,#5b21b6 0,transparent 45%),radial-gradient(circle at 85% 85%,#7e22ce 0,transparent 45%),var(--deep);background-attachment:fixed;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;padding:24px 16px 60px}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.fl{position:absolute;bottom:-40px;opacity:0;animation:rise linear forwards;filter:drop-shadow(0 0 6px var(--neon))}
+@keyframes rise{10%{opacity:.9}100%{transform:translate(var(--dx),-110vh) rotate(var(--rot));opacity:0}}
+.card{position:relative;z-index:1;width:min(560px,100%);margin-top:12vh;padding:44px 28px;text-align:center;background:var(--glass);border:1px solid rgba(228,212,255,.25);border-radius:28px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 0 50px rgba(192,77,255,.25),inset 0 0 30px rgba(255,255,255,.04)}
+h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(2rem,8vw,3rem);color:#fff;text-shadow:0 0 18px var(--neon);line-height:1.2}
+.sub{margin-top:10px;font-size:.95rem;opacity:.75}
+.sad{font-size:1.25rem;line-height:1.6;color:#fff}
+.btns{margin-top:30px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+button{font:700 1.05rem 'Quicksand',sans-serif;color:#fff;cursor:pointer;padding:13px 34px;border-radius:999px;border:1px solid rgba(228,212,255,.4);background:var(--glass);backdrop-filter:blur(8px);transition:transform .2s,box-shadow .2s}
+button:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(192,77,255,.5)}
+button:focus-visible{outline:3px solid var(--lav);outline-offset:3px}
+#yes{background:linear-gradient(135deg,#a21caf,var(--neon));border-color:#f0abfc;animation:pulse 1.4s ease-in-out infinite;padding:15px 44px;font-size:1.2rem}
+@keyframes pulse{0%,100%{box-shadow:0 0 14px var(--neon),0 0 30px rgba(192,77,255,.5);transform:scale(1)}50%{box-shadow:0 0 28px #e879f9,0 0 60px rgba(192,77,255,.8);transform:scale(1.09)}}
+.hide{display:none!important}
+.screen{animation:fade .6s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#love{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center}
+.ribbon{width:100vw;overflow:hidden;padding:34px 0;margin-bottom:10px}
+.track{display:flex;width:max-content;animation:scroll 22s linear infinite}
+.track span{display:inline-flex;white-space:pre;font-weight:700;font-size:clamp(1.3rem,5vw,2rem);color:#f5d0fe;text-shadow:0 0 8px var(--neon),0 0 22px var(--neon)}
+.track i{font-style:normal;display:inline-block;animation:zig 1.1s ease-in-out infinite}
+@keyframes zig{0%,100%{transform:translateY(-16px) rotate(-6deg)}50%{transform:translateY(16px) rotate(6deg)}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.letter{width:min(680px,100%);padding:40px clamp(22px,6vw,52px);background:var(--glass);border:1px solid rgba(228,212,255,.25);border-radius:26px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 0 50px rgba(192,77,255,.25);font-family:'Cormorant Garamond',serif;font-size:1.3rem;line-height:1.75;color:#f3e8ff}
+.letter p{margin-bottom:1.1em}
+.letter .to{font-size:1.9rem;font-style:italic;color:#fff;text-shadow:0 0 14px var(--neon)}
+.letter .sig{text-align:right;font-style:italic;font-size:1.4rem;margin:1.6em 0 0}
+@media (prefers-reduced-motion:reduce){.track,.track i,#yes,.fl{animation:none}.track{overflow-x:auto}}
+</style>
+</head>
+<body>
+<div id="fx" aria-hidden="true"></div>
+
+<main class="card" id="card">
+  <div id="ask" class="screen">
+    <h1>Do you love me?☹️</h1>
+    <p class="sub">Choose carefully, my love.</p>
+    <div class="btns">
+      <button id="yes" class="hide">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+  <div id="sad" class="screen hide">
+    <p class="sad">ok. you don't love me anymore, ’di kita bati☹️☹️☹️</p>
+    <div class="btns"><button id="back">Go Back</button></div>
+  </div>
+</main>
+
+<section id="love" class="hide">
+  <div class="ribbon" aria-label="iloveyousomuch hannah"><div class="track" id="track"></div></div>
+  <article class="letter">
+    <p class="to">My dearest Hannah,</p>
+    <p>There are feelings for which language was never quite built, and yet here I am, attempting to hold the ocean in a teacup. You are the quiet miracle I did not know to ask for, and the one I would choose in every life, in every version of the world.</p>
+    <p>Your presence is a kind of gentle light. It does not demand attention; it simply makes everything it touches more beautiful. In your company, ordinary hours become treasured ones, and even silence feels like a conversation the heart is fluent in.</p>
+    <p>I love you without conditions and without ceilings. I love you on the radiant days and on the weary ones, in your laughter and in your stillness, in your strength and in the tender places you let only me see. My devotion is not a season; it is a home I have built for you, and the door is always open.</p>
+    <p>Thank you for your patience, for your warmth, and for the courage it takes to love someone fully. Thank you for being exactly who you are. Whatever tomorrow brings, I will meet it beside you, grateful beyond words that my heart found yours.</p>
+    <p>Always, wholly, and forever yours,</p>
+    <p class="sig">💜 Your love</p>
+  </article>
+</section>
+
+<script>
+const fx=document.getElementById('fx');
+const glyphs=['✦','✧','💜','♡','✨','💗'];
+function floater(burst){
+  const e=document.createElement('span');e.className='fl';
+  e.textContent=glyphs[Math.floor(Math.random()*glyphs.length)];
+  const s=burst?18+Math.random()*26:10+Math.random()*18;
+  e.style.cssText=`left:${Math.random()*100}%;font-size:${s}px;color:#e9d5ff;--dx:${(Math.random()-.5)*160}px;--rot:${(Math.random()-.5)*360}deg;animation-duration:${(burst?3:7)+Math.random()*6}s`;
+  fx.appendChild(e);setTimeout(()=>e.remove(),14000);
+}
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(!reduce){setInterval(()=>floater(false),450);for(let i=0;i<10;i++)setTimeout(()=>floater(false),i*150)}
+
+const $=id=>document.getElementById(id);
+function show(a,b){a.classList.add('hide');b.classList.remove('hide');b.classList.remove('screen');void b.offsetWidth;b.classList.add('screen')}
+$('no').onclick=()=>show($('ask'),$('sad'));
+$('back').onclick=()=>{$('yes').classList.remove('hide');show($('sad'),$('ask'))};
+
+$('yes').onclick=()=>{
+  $('card').classList.add('hide');
+  $('love').classList.remove('hide');
+  const text='iloveyousomuch hannah!💜💜💜💜     ';
+  const chars=[...text];
+  let html='';
+  for(let r=0;r<8;r++){html+='<span>'+chars.map((c,i)=>`<i style="animation-delay:${-(i*0.18)}s">${c}</i>`).join('')+'</span>'}
+  $('track').innerHTML=html;
+  if(!reduce)for(let i=0;i<70;i++)setTimeout(()=>floater(true),i*40);
+  setInterval(()=>{if(!reduce)for(let i=0;i<3;i++)floater(true)},1200);
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+</script>
+</body>
+</html>
